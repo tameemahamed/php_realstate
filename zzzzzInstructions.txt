@@ -1,0 +1,59 @@
+Create laravel project
+    -> composer create-project laravel/laravel realstate
+    -> cd realstate
+
+Run project
+    project directory "/resources/views/welcome.blade.php"
+    -> php artisan serve
+    this thing actually call "routes/web.php" first.
+    That lines 5 to 7 does the rest.
+
+Configure database
+    go to .env file and lines 24 to 29
+    change that shit into mysql
+
+Install Breeze
+    -> composer require laravel/breeze --dev
+    -> php artisan breeze:install
+    then there will be teo option named login / register in the webpage
+
+Configure database
+    add whatever we need in the database/migrations/those_creepy_name
+    directory. in app/Models/User.php change line 20 to "protected $guarded = [];"
+    Then run the following
+    -> php artisan migrate
+
+make dummy users
+    -> php artisan make:seeder UserTableSeeder
+    go to database/seeders/UserTableSeeder
+    and then start changing from line number 17(to add some users)
+    also import whatever creep is needed
+
+    go to database/factories/UserFactory.php
+    and add whatever is needed
+
+    to do the database migration
+    -> php artisan migrate:fresh --seed
+
+
+making admin and agent dashboard
+    -> php artisan make:controller AdminController
+    it will make directory app/controllers/AdminController.php
+    inside the class AdminController make a method called AdminDashboard
+        public function AdminDashboard(){
+            return view('admin.admin_dashboard');
+        }
+    do this thing.
+    In routes/web.php "use App\Http\Controllers\AdminController;" add this.
+
+    Make a directory resources/views/admin/admin_dashboard.blade.php 
+
+    Now work in this directory to create a dashboard.
+
+making multi authentication
+    -> 
+
+
+middleware to set permission for users
+    -> php artisan make:middleware role
+    it will create a middleware in app/Http/Middleware/role.php
